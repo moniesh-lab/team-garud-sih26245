@@ -1,184 +1,162 @@
-# GTMS — AI Attendance & Training Center Monitoring System
+# DRISHTI — AI-Powered Government Training Monitoring System
 
-An AI-powered Training Center Monitoring System designed to support classroom monitoring, student attendance verification, and equipment surveillance using computer vision.
+### DRISHTI | Team GARUD | SIH26245
 
-GTMS integrates a web-based dashboard with YOLO-based person detection to monitor classroom occupancy, visualize detected people, and support more efficient training center administration.
+**Live Demo:** https://drishti-garud8.vercel.app  
+**GitHub Repository:** https://github.com/moniesh-lab/DRISHTI-SIH26245_GARUD
 
-## Features
+---
 
-### AI-Powered Classroom Monitoring
-- YOLO-based person detection.
-- Real-time or video-based classroom monitoring, depending on the configured camera source.
-- Bounding-box visualization for detected people.
-- Automatic headcount calculation.
-- Detection performance testing using sample classroom videos.
+## About the Project
 
-### Attendance Monitoring
-- AI-assisted classroom attendance monitoring.
-- Headcount-based occupancy verification.
-- Foundation for comparing AI-generated attendance with trainer-submitted manual attendance.
+**DRISHTI** is an AI-powered monitoring and compliance platform designed to support transparent, efficient, and data-driven oversight of government training centres.
 
-### Training Center Oversight
-- Web-based monitoring dashboard.
-- Sample video selection and detection visualization.
-- Detection telemetry and model output inspection.
-- Foundation for centralized government monitoring of training centers.
+The system brings together computer vision-based trainee monitoring, attendance verification, infrastructure and equipment auditing, and compliance tracking in a centralized dashboard. It aims to help authorities identify discrepancies, monitor training-centre performance, and make informed inspection decisions.
 
-### Equipment Monitoring
-- Computer vision experiments for equipment detection.
-- Support for testing equipment-related detection scenarios.
-- Potential extension for equipment inventory verification and damage reporting.
+## Key Features
+
+- **AI-Powered Attendance Monitoring:** Uses YOLO-based computer vision to support trainee detection and attendance verification.
+- **CCTV Video Monitoring:** Displays camera feeds and sample CCTV footage for training-centre monitoring.
+- **Multi-Centre Dashboard:** Provides a centralized interface for monitoring multiple training centres.
+- **Attendance Discrepancy Detection:** Compares reported attendance with AI-detected counts.
+- **Equipment and Infrastructure Auditing:** Tracks sanctioned equipment, detected quantities, shortages, and reported defective assets.
+- **Compliance Monitoring:** Highlights potential compliance issues and supports configurable monitoring thresholds.
+- **Inspection Support:** Provides inspection alerts, audit information, and review actions.
+- **Audit Data Export:** Allows dashboard audit information to be exported in JSON format.
+- **Interactive Dashboard:** Presents monitoring information through a structured, responsive interface.
 
 ## Technology Stack
 
-**Frontend**
-- React
-- Vite
-- JavaScript / TypeScript, depending on the configured source files
-- HTML and CSS
+| Technology | Purpose |
+|---|---|
+| React | User interface |
+| Vite | Frontend development and build tooling |
+| JavaScript / JSX | Application logic and components |
+| Tailwind CSS | Dashboard styling |
+| Lucide React | Interface icons |
+| YOLO-based computer vision | Trainee and object detection |
+| Vercel | Frontend deployment |
 
-**AI and Backend**
-- Python
-- Ultralytics YOLO
-- OpenCV and supporting computer vision libraries, where configured
-- FFmpeg for video processing, where configured
+*The technology list describes the known frontend and monitoring components; additional backend or model-serving technologies may be used depending on the project configuration.*
 
-## Project Structure
+## System Overview
 
-The project includes frontend source files, backend detection scripts, model weights, sample images, configuration files, and video-testing resources.
+The platform follows a monitoring and verification workflow:
 
-Typical components include:
-
-- `src/` — frontend application source.
-- `public/` — static frontend assets.
-- `package.json` — frontend dependencies and scripts.
-- `package-lock.json` — locked npm dependency versions.
-- `vite.config.*` — Vite configuration.
-- `yolo_camera_server.py` — Python camera and YOLO processing component.
-- `yolov8n.pt` — pretrained YOLO model weights.
-- Sample images and annotation/configuration files — resources for detection testing.
-
-The exact contents may vary with the project version.
+1. Select a training centre from the dashboard.
+2. View its available camera feed or sample CCTV footage.
+3. Review AI-detected trainee counts and compare them with reported attendance.
+4. Inspect equipment availability, shortages, and reported defects.
+5. Review compliance indicators and potential inspection requirements.
+6. Export audit information for further review.
 
 ## Getting Started
 
 ### Prerequisites
 
-Install the following software:
-
-- Node.js and npm.
-- Python compatible with the project's installed AI dependencies.
-- Git, if cloning the repository.
-- FFmpeg if required by the configured video-processing pipeline.
+- Node.js and npm
+- Git
+- A modern web browser
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/GTMS-AI-Training-Monitoring.git
-cd GTMS-AI-Training-Monitoring
+git clone https://github.com/moniesh-lab/DRISHTI-SIH26245_GARUD.git
 ```
 
-Replace `YOUR_USERNAME` with your GitHub username.
+### 2. Navigate to the frontend directory
 
-### 2. Install frontend dependencies
+```bash
+cd DRISHTI-SIH26245_GARUD/gov-monitoring-system
+```
+
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Start the frontend
+### 4. Start the development server
 
 ```bash
 npm run dev
 ```
 
-Open the local URL displayed by Vite in your browser.
+Open the local URL displayed in your terminal to access the dashboard.
 
-### 4. Configure the Python backend
-
-Install the Python dependencies specified by the project's backend requirements file, if provided.
-
-For example:
+### 5. Create a production build
 
 ```bash
-python -m venv .venv
+npm run build
 ```
 
-On Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-Install the dependencies using the project's actual requirements file:
-
-```bash
-pip install -r requirements.txt
-```
-
-Start the backend using the entry point and command documented in the project. The exact command depends on how `yolo_camera_server.py` is implemented.
-
-**Note:** Do not assume that the frontend and backend start together. Configure and run each service as required by the application.
-
-## Model and Dataset
-
-The project includes YOLO-related model and detection-testing resources.
-
-Model performance depends on the selected weights, image resolution, training data, annotations, and inference configuration.
-
-For reliable classroom person detection, use a representative, correctly labeled dataset containing:
-- Students at different distances from the camera.
-- Partially occluded people.
-- Different classroom layouts and lighting conditions.
-- Trainers and students in different postures.
-
-Evaluate the model using held-out videos and manually verified reference counts before using its output for attendance decisions.
+The generated production files will be available in the `dist` directory.
 
 ## Deployment
 
-The frontend can be deployed to a compatible static web hosting platform such as Vercel if the build configuration is supported.
+The deployed dashboard is available here:
 
-The Python YOLO backend generally requires a separate compatible hosting service or dedicated machine for persistent video processing.
+**[Open DRISHTI Live Demo](https://drishti-garud8.vercel.app)**
 
-When deploying:
-1. Configure the frontend build command and output directory.
-2. Deploy the Python backend separately where necessary.
-3. Configure the frontend to use the deployed backend URL.
-4. Configure camera access, model paths, environment variables, and CORS appropriately.
-5. Test all application features after deployment.
+The frontend is deployed using Vercel. Ensure that the required static assets are included in the deployment and that any external services or backend endpoints required by the application are correctly configured.
 
-Do not use `localhost` as the production API address.
+## Project Structure
 
-## Privacy and Security
+```text
+DRISHTI-SIH26245_GARUD/
+├── gov-monitoring-system/
+│   ├── public/                 # Static assets and sample media
+│   ├── src/
+│   │   ├── components/         # Dashboard and monitoring components
+│   │   ├── services/           # Application services
+│   │   └── ...                 # Application source files
+│   ├── package.json
+│   └── vite.config.js
+├── .gitignore
+├── .vercelignore
+└── README.md
+```
 
-Classroom camera feeds and student information can contain sensitive personal data.
+*This is a simplified overview; the exact directory structure may vary across versions.*
 
-- Restrict access using appropriate authentication and authorization.
-- Secure camera feeds and API endpoints.
-- Avoid committing credentials, secret keys, or private student data.
-- Use authorized datasets and camera recordings.
-- Establish suitable data retention and access-control policies.
+## Intended Impact
 
-## Current Development Goals
+DRISHTI aims to improve government training-centre oversight by bringing attendance verification, infrastructure monitoring, and compliance information into one interface.
 
-- Improve person detection in dense classrooms.
-- Reduce missed and duplicate detections.
-- Improve headcount accuracy.
-- Implement reliable video seeking and playback controls.
-- Evaluate model performance on unseen classroom footage.
-- Extend attendance verification and equipment monitoring.
+Its intended benefits include:
 
-## Disclaimer
+- Better visibility into training-centre operations.
+- Faster identification of attendance discrepancies.
+- Improved tracking of equipment shortages and defects.
+- More structured compliance reviews and inspection workflows.
+- Greater transparency and accountability through centralized monitoring.
 
-GTMS is a computer vision and monitoring project under development. Detection results may be inaccurate due to occlusion, camera perspective, lighting, and model limitations.
+## Limitations
 
-AI detections should be independently verified before being used for consequential attendance or disciplinary decisions.
+- Detection accuracy depends on video quality, camera placement, lighting, and model performance.
+- Sample CCTV footage demonstrates the monitoring interface but does not constitute a live camera connection.
+- AI-generated counts should be reviewed before being used for official decisions.
+- Compliance alerts support review and should not automatically be treated as proof of a violation.
+
+## Future Enhancements
+
+- Real-time CCTV stream integration.
+- Improved detection accuracy under challenging lighting and occlusion.
+- Historical analytics and trend visualization.
+- Role-based access control and secure audit logging.
+- Integration with verified government datasets and reporting systems.
+- Automated generation of centre-wise compliance reports.
+
+## Team
+
+**Team GARUD**  
+Project: DRISHTI  
+Smart India Hackathon — SIH26245
 
 ## License
 
-Choose and add an appropriate open-source license before distributing the project. Ensure that the licenses of all included model weights, datasets, and third-party dependencies permit your intended use.
+No license has been specified yet. Unless a license is added to the repository, reuse and redistribution are subject to the applicable copyright rules.
 
 ---
 
-**GTMS — AI Attendance & Training Center Monitoring System**  
-*Computer vision for smarter training center monitoring.*
+**DRISHTI — Vision for a Trusted Tomorrow.**
